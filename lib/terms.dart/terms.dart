@@ -15,5 +15,6 @@ class TermsPage extends StatelessWidget {
         ),
       ),
     );
+    
   }
 }
