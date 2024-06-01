@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:test_installasi_flutter/SignUppage.dart/Signuppage.dart';
 import 'package:test_installasi_flutter/forgotpassword/forgotpasswordpage.dart';
 
-
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -25,15 +24,21 @@ class _LoginPageState extends State<LoginPage> {
             Text(
               'Welcome',
               style: TextStyle(
-                fontSize: 30,
-                color: Colors.black,
+                color: Color(0xFF00CCFF),
+                fontSize: 48,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w900,
+                height: 0,
               ),
             ),
             Text(
               'Back!',
               style: TextStyle(
-                fontSize: 30,
-                color: Colors.blue,
+                color: Color(0xFF00CCFF),
+                fontSize: 48,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w900,
+                height: 0,
               ),
             ),
             SizedBox(height: 40),
@@ -69,10 +74,10 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 TextButton(
                   onPressed: () {
-                    
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
+                      MaterialPageRoute(
+                          builder: (context) => ForgotPasswordPage()),
                     );
                   },
                   child: Text('Forgot password?'),
@@ -82,9 +87,7 @@ class _LoginPageState extends State<LoginPage> {
             Spacer(),
             Center(
               child: ElevatedButton(
-                onPressed: () {
-                  
-                },
+                onPressed: () {},
                 child: Text(
                   'Login',
                   style: TextStyle(
@@ -107,7 +110,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 TextButton(
                   onPressed: () {
-                    
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => SignUpPage()),
