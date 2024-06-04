@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_installasi_flutter/HomePage/HomePage.dart';
 import 'package:test_installasi_flutter/SignUppage.dart/Signuppage.dart';
 import 'package:test_installasi_flutter/forgotpassword/forgotpasswordpage.dart';
 
@@ -87,7 +88,12 @@ class _LoginPageState extends State<LoginPage> {
             Spacer(),
             Center(
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Homepage()),
+                  );
+                },
                 child: Text(
                   'Login',
                   style: TextStyle(
