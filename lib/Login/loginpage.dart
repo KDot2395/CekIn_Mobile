@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:test_installasi_flutter/Bookmark/BookmarkPage.dart';
 import 'package:test_installasi_flutter/SignUppage.dart/Signuppage.dart';
 import 'package:test_installasi_flutter/forgotpassword/forgotpasswordpage.dart';
-
 
 class LoginPage extends StatefulWidget {
   @override
@@ -25,28 +25,34 @@ class _LoginPageState extends State<LoginPage> {
             Text(
               'Welcome',
               style: TextStyle(
-                fontSize: 30,
-                color: Colors.black,
+                color: Color(0xFF00CCFF),
+                fontSize: 48,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w900,
+                height: 0,
               ),
             ),
             Text(
               'Back!',
               style: TextStyle(
-                fontSize: 30,
-                color: Colors.blue,
+                color: Color(0xFF00CCFF),
+                fontSize: 48,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w900,
+                height: 0,
               ),
             ),
             SizedBox(height: 40),
             TextFormField(
               decoration: InputDecoration(
-                labelText: 'Name',
+                labelText: 'Enter your Email',
                 border: OutlineInputBorder(),
               ),
             ),
             SizedBox(height: 20),
             TextFormField(
               decoration: InputDecoration(
-                labelText: 'Email',
+                labelText: 'Enter your Password',
                 border: OutlineInputBorder(),
               ),
             ),
@@ -69,10 +75,10 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 TextButton(
                   onPressed: () {
-                    
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
+                      MaterialPageRoute(
+                          builder: (context) => ForgotPasswordPage()),
                     );
                   },
                   child: Text('Forgot password?'),
@@ -83,7 +89,8 @@ class _LoginPageState extends State<LoginPage> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => BookmarkPage()));
                 },
                 child: Text(
                   'Login',
@@ -107,7 +114,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 TextButton(
                   onPressed: () {
-                    
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => SignUpPage()),

@@ -43,18 +43,21 @@ class BookmarkPage extends StatelessWidget {
             temperature: 25,
             isDay: true,
             onTap: () => _onCardTap(context, 'Bogor'),
+            backgroundImage: 'assets/icons/skyLight.png',
           ),
           WeatherCard(
             city: 'Bandung',
             temperature: 23,
             isDay: true,
             onTap: () => _onCardTap(context, 'Bandung'),
+            backgroundImage: 'assets/icons/skyLight.png',
           ),
           WeatherCard(
             city: 'London',
             temperature: 14,
             isDay: false,
             onTap: () => _onCardTap(context, 'London'),
+            backgroundImage: 'assets/icons/skyNight.png',
           ),
         ],
       ),
@@ -104,6 +107,7 @@ class WeatherCard extends StatelessWidget {
   final int temperature;
   final bool isDay;
   final VoidCallback onTap;
+  final String backgroundImage;
 
   const WeatherCard({
     Key? key,
@@ -111,6 +115,7 @@ class WeatherCard extends StatelessWidget {
     required this.temperature,
     required this.isDay,
     required this.onTap,
+    required this.backgroundImage,
   }) : super(key: key);
 
   @override
@@ -121,8 +126,11 @@ class WeatherCard extends StatelessWidget {
         margin: EdgeInsets.all(10.0),
         padding: EdgeInsets.all(20.0),
         decoration: BoxDecoration(
-          color: isDay ? Colors.lightBlue[100] : Colors.blueGrey[900],
           borderRadius: BorderRadius.circular(15.0),
+          image: DecorationImage(
+            image: AssetImage(backgroundImage),
+            fit: BoxFit.cover,
+          ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -127,13 +127,16 @@ class _SignUpPageState extends State<SignUpPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => TermsPage(), // Navigate to TermsPage
+                        builder: (context) =>
+                            TermsPage(), // Navigate to TermsPage
                       ),
                     );
                   },
                   child: Text(
                     'I agree to the terms and conditions',
-                    style: TextStyle(color: Colors.white, decoration: TextDecoration.underline),
+                    style: TextStyle(
+                        color: Colors.white,
+                        decoration: TextDecoration.underline),
                   ),
                 ),
               ],
@@ -240,7 +243,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     Navigator.pop(context);
                   },
                   child: Text(
-                    'Login Up',
+                    'Login Now',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),

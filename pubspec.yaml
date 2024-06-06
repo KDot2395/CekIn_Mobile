@@ -66,6 +66,10 @@ flutter:
     - assets/icons/iconLanding.png
     - assets/icons/awan.kiri.atas.png
     - assets/icons/welcome.page.awan.png
+    - assets/icons/sun.cloud.rain.png
+    - assets/icons/skyLight.png
+    - assets/icons/skyNight.png
+    - assets/icons/loginBackground.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
