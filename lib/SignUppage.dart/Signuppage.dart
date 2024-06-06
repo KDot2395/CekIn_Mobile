@@ -18,7 +18,10 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign Up'),
+        title: Text(
+          'Sign Up',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
       ),
       body: Container(
         color: Color(0xFF00CCFF),
@@ -29,8 +32,9 @@ class _SignUpPageState extends State<SignUpPage> {
             Text(
               'Create Your Account',
               style: TextStyle(
-                fontSize: 30,
+                fontSize: 50,
                 color: Colors.white,
+                fontWeight: FontWeight.bold,
               ),
             ),
             SizedBox(height: 20),
@@ -111,7 +115,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 obscureText: true,
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 15),
             Row(
               children: [
                 Checkbox(
@@ -219,9 +223,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   }
                 },
                 child: Text(
-                  'Sign Up',
+                  'SIGN UP',
                   style: TextStyle(
                     color: Colors.black,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
@@ -244,7 +249,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                   child: Text(
                     'Login Now',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline),
                   ),
                 ),
               ],

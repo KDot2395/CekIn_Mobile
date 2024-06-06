@@ -5,10 +5,19 @@ class EmailConfirmationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Email Confirmation'),
+        title: Text(
+          'Email Confirmation',
+          style:
+              TextStyle(color: Colors.lightBlue, fontWeight: FontWeight.bold),
+        ),
       ),
       body: Container(
-        color: Colors.blue, 
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/icons/loginBackground.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
         padding: EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -18,7 +27,7 @@ class EmailConfirmationPage extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 40,
-                color: Colors.white, 
+                color: Colors.white,
               ),
             ),
             SizedBox(height: 20),
@@ -27,17 +36,19 @@ class EmailConfirmationPage extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 18,
-                color: Colors.white, 
+                color: Colors.white,
               ),
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                
-              },
-              child: Text('Resend Email Verification'),
+              onPressed: () {},
+              child: Text(
+                'Resend Email Verification',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.blue, backgroundColor: Colors.white, 
+                foregroundColor: Colors.blue,
+                backgroundColor: Colors.white,
               ),
             ),
           ],

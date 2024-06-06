@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(AddWeatherPage());
-}
-
 class AddWeatherPage extends StatefulWidget {
   @override
   _AddWeatherPageState createState() => _AddWeatherPageState();
@@ -40,7 +36,10 @@ class _AddWeatherPageState extends State<AddWeatherPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Weather'),
+        title: Text(
+          'Add Weather',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -99,7 +98,7 @@ class _AddWeatherPageState extends State<AddWeatherPage> {
             Center(
               child: ElevatedButton(
                 onPressed: _addWeather,
-                child: Text('ADD'),
+                child: Text('SUBMIT'),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   backgroundColor: Colors.lightBlue,

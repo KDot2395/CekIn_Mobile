@@ -1,6 +1,73 @@
 import 'package:flutter/material.dart';
-import 'package:test_installasi_flutter/Profile/LogoutPage.dart';
-import 'package:test_installasi_flutter/Profile/editProfilePage.dart';
+import 'package:test_installasi_flutter/Login/loginpage.dart';
+import 'package:test_installasi_flutter/Profile/AboutApp.dart';
+import 'package:test_installasi_flutter/Profile/profileUpdatePage.dart';
+import 'package:test_installasi_flutter/Profile/updatepassword.dart';
+
+class Profilepage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Profile Page',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MainPage(),
+        '/login': (context) => LoginPage(),
+      },
+    );
+  }
+}
+
+class MainPage extends StatefulWidget {
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  int _selectedIndex = 2;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  static List<Widget> _widgetOptions = <Widget>[
+    Center(child: Text('Home Page')),
+    Center(child: Text('Bookmark Page')),
+    ProfilePage(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _widgetOptions.elementAt(_selectedIndex),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bookmark),
+            label: 'Bookmark',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        onTap: _onItemTapped,
+      ),
+    );
+  }
+}
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -15,102 +82,210 @@ class ProfilePage extends StatelessWidget {
           },
         ),
       ),
-      body: ListView(
-        padding: EdgeInsets.all(16.0),
-        children: [
-          // Profile information card
-          Card(
-            color: Color(0xFF00CCFF),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            child: ListTile(
-              contentPadding: EdgeInsets.all(16.0),
-              leading: CircleAvatar(
-                radius: 30,
-                backgroundImage: AssetImage('assets/profile_image.png'),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(10),
               ),
-              title: Text(
-                'Ariiq enzoy',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Colors.white,
-                ),
+              padding: EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    backgroundImage: AssetImage(
+                        'assets/icons/avatar.png'), // replace with your asset image
+                    radius: 30,
+                  ),
+                  SizedBox(width: 16),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Ariiq enzoy',
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                      Text(
+                        'ariiq@gmail.com',
+                        style: TextStyle(color: Colors.white, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-              subtitle: Text(
-                '@Ariiqaf',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
+            ),
+            SizedBox(height: 20),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
               ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => EditProfilePage()),
-                );
-              },
+              child: Column(
+                children: [
+                  ListTile(
+                    leading: Icon(Icons.edit),
+                    title: Text('Edit Profile Information'),
+                    subtitle: Text('Make changes to your account'),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProfileInformationPage()));
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.key),
+                    title: Text('Update Password'),
+                    subtitle: Text('Make changes to your password'),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Updatepassword()));
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.logout),
+                    title: Text('Log out'),
+                    subtitle: Text('Further secure your account for safety'),
+                    onTap: () {
+                      _showLogoutDialog(context);
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.verified_user),
+                    title: Text('Delete Account'),
+                    subtitle: Text('Permanently delete your account'),
+                    onTap: () {
+                      _showDeleteAccountDialog(context);
+                    },
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 20),
-          // Options list
-          Card(
-            child: Column(
-              children: [
-                ListTile(
-                  leading: Icon(Icons.person_outline, color: Colors.blue),
-                  title: Text('Edit Profile'),
-                  subtitle: Text('Make changes to your account'),
-                  trailing: Icon(Icons.arrow_forward_ios),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => EditProfilePage()),
-                    );
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.logout, color: Colors.blue),
-                  title: Text('Log out'),
-                  subtitle: Text('Further secure your account for safety'),
-                  trailing: Icon(Icons.arrow_forward_ios),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LogoutPage()),
-                    );
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.delete_outline, color: Colors.blue),
-                  title: Text('Delete Account'),
-                  subtitle: Text('Permanently delete your account'),
-                  trailing: Icon(Icons.arrow_forward_ios),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => DeleteAccountPage()),
-                    );
-                  },
-                ),
-              ],
+            SizedBox(height: 20),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'More',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
-          SizedBox(height: 20),
-          // More section
-          Card(
-            child: ListTile(
-              leading: Icon(Icons.info_outline, color: Colors.blue),
-              title: Text('About App'),
-              trailing: Icon(Icons.arrow_forward_ios),
-              onTap: () {
-                // Add functionality if needed
-              },
+            SizedBox(height: 10),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: ListTile(
+                leading: Icon(Icons.info),
+                title: Text('About App'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AboutApp()));
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
+    );
+  }
+
+  void _showLogoutDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Oh no! You\'re leaving.'),
+          content: Text('Are you sure?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text('No'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginPage()));
+              },
+              child: Text('Yes'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _deleteAccount(BuildContext context) async {
+    // Simulate account deletion process
+    await Future.delayed(
+        Duration(seconds: 2)); // Simulate a delay for account deletion process
+
+    print('Account deleted'); // Simulate account deletion logic here
+
+    // Navigate to the login page after deletion
+    Navigator.of(context).pop();
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => LoginPage()));
+  }
+
+  void _showDeleteAccountDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Are you sure you want to delete your account?'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(
+                'Once your account is deleted, all of its resources and data will be permanently deleted.',
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                ),
+                obscureText: true,
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                _deleteAccount(context);
+              },
+              child: Text('Delete Account'),
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.red, // Correct parameter for text color
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

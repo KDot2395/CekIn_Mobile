@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_installasi_flutter/HomePage/HomePage.dart';
 import 'package:test_installasi_flutter/Profile/profilePage.dart';
 import 'package:test_installasi_flutter/addWeather/addWeatherPage.dart';
+import 'package:test_installasi_flutter/addWeather/weatherInfoPage.dart';
 
 class Bookmarkpage extends StatelessWidget {
   @override
@@ -12,12 +13,42 @@ class Bookmarkpage extends StatelessWidget {
   }
 }
 
-class BookmarkPage extends StatelessWidget {
+class BookmarkPage extends StatefulWidget {
+  @override
+  _BookmarkPageState createState() => _BookmarkPageState();
+}
+
+class _BookmarkPageState extends State<BookmarkPage> {
+  int _selectedIndex = 1; // Initially set to 1 to highlight the Bookmark tab
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch (index) {
+      case 0:
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => Homepage()),
+        );
+        break;
+      case 1:
+        // Current page, no action needed
+        break;
+      case 2:
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => ProfilePage()),
+        );
+        break;
+    }
+  }
+
   void _onCardTap(BuildContext context, String city) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Clicked on $city card!'),
-      ),
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => WeatherInfoPage(city: city)),
     );
   }
 
@@ -25,7 +56,10 @@ class BookmarkPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bookmark'),
+        title: Text(
+          'Bookmark',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.add),
@@ -76,27 +110,10 @@ class BookmarkPage extends StatelessWidget {
             label: 'Profile',
           ),
         ],
+        currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
-        onTap: (index) {
-          switch (index) {
-            case 0:
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Homepage()),
-              );
-              break;
-            case 1:
-              // Current page, no action needed
-              break;
-            case 2:
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ProfilePage()),
-              );
-              break;
-          }
-        },
+        onTap: _onItemTapped,
       ),
     );
   }
@@ -153,11 +170,6 @@ class WeatherCard extends StatelessWidget {
                   ),
                 ),
               ],
-            ),
-            Icon(
-              isDay ? Icons.wb_sunny : Icons.nights_stay,
-              size: 40.0,
-              color: isDay ? Colors.yellow : Colors.white,
             ),
           ],
         ),

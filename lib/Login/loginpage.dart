@@ -15,115 +15,140 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text(
+          'Login',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Welcome',
-              style: TextStyle(
-                color: Color(0xFF00CCFF),
-                fontSize: 48,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w900,
-                height: 0,
-              ),
-            ),
-            Text(
-              'Back!',
-              style: TextStyle(
-                color: Color(0xFF00CCFF),
-                fontSize: 48,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w900,
-                height: 0,
-              ),
-            ),
-            SizedBox(height: 40),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Enter your Email',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Enter your Password',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Checkbox(
-                      value: rememberMe,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          rememberMe = value!;
-                        });
-                      },
-                    ),
-                    Text('Remember me'),
-                  ],
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/icons/loginBackground.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Welcome',
+                style: TextStyle(
+                  color: Color(0xFF00CCFF),
+                  fontSize: 48,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w900,
+                  height: 0,
                 ),
-                TextButton(
+              ),
+              Text(
+                'Back!',
+                style: TextStyle(
+                  color: Color(0xFF00CCFF),
+                  fontSize: 48,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w900,
+                  height: 0,
+                ),
+              ),
+              SizedBox(height: 40),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Enter your Email',
+                  border: OutlineInputBorder(),
+                  filled: true,
+                  fillColor: Colors.white,
+                ),
+              ),
+              SizedBox(height: 20),
+              TextFormField(
+                decoration: InputDecoration(
+                    labelText: 'Enter your Password',
+                    border: OutlineInputBorder(),
+                    filled: true,
+                    fillColor: Colors.white),
+              ),
+              SizedBox(height: 15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Checkbox(
+                        value: rememberMe,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            rememberMe = value!;
+                          });
+                        },
+                      ),
+                      Text('Remember me'),
+                    ],
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ForgotPasswordPage()),
+                      );
+                    },
+                    child: Text(
+                      'Forgot password?',
+                      style: TextStyle(
+                          color: Colors.black,
+                          decoration: TextDecoration.underline),
+                    ),
+                  ),
+                ],
+              ),
+              Spacer(),
+              Center(
+                child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => ForgotPasswordPage()),
+                      MaterialPageRoute(builder: (context) => BookmarkPage()),
                     );
                   },
-                  child: Text('Forgot password?'),
-                ),
-              ],
-            ),
-            Spacer(),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => BookmarkPage()));
-                },
-                child: Text(
-                  'Login',
-                  style: TextStyle(
-                    color: Colors.black,
+                  child: Text(
+                    'LOGIN',
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   ),
                 ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                ),
               ),
-            ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Don't have an account?",
-                  style: TextStyle(color: Colors.black),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignUpPage()),
-                    );
-                  },
-                  child: Text('Sign up'),
-                ),
-              ],
-            ),
-          ],
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Don't have an account?",
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignUpPage()),
+                      );
+                    },
+                    child: Text(
+                      'Sign up',
+                      style: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
