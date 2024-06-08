@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/icons/loginBackground.png'),
+            image: AssetImage('assets/images/loginBackground.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -109,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => BookmarkPage()),
+                      MaterialPageRoute(builder: (context) => Bookmarkpage()),
                     );
                   },
                   child: Text(

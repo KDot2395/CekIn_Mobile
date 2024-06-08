@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_installasi_flutter/HomePage/HomePage.dart';
 import 'package:test_installasi_flutter/Profile/profilePage.dart';
+import 'package:test_installasi_flutter/SearchPage/SearchCityInfo.dart';
 import 'package:test_installasi_flutter/addWeather/addWeatherPage.dart';
 import 'package:test_installasi_flutter/addWeather/weatherInfoPage.dart';
 
@@ -28,16 +29,22 @@ class _BookmarkPageState extends State<BookmarkPage> {
 
     switch (index) {
       case 0:
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => Homepage()),
         );
         break;
       case 1:
-        // Current page, no action needed
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SearchCityInfo()),
+        );
         break;
       case 2:
-        Navigator.pushReplacement(
+        // Current page, no action needed
+        break;
+      case 3:
+        Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => ProfilePage()),
         );
@@ -77,21 +84,21 @@ class _BookmarkPageState extends State<BookmarkPage> {
             temperature: 25,
             isDay: true,
             onTap: () => _onCardTap(context, 'Bogor'),
-            backgroundImage: 'assets/icons/skyLight.png',
+            backgroundImage: 'assets/images/skyLight.png',
           ),
           WeatherCard(
             city: 'Bandung',
             temperature: 23,
             isDay: true,
             onTap: () => _onCardTap(context, 'Bandung'),
-            backgroundImage: 'assets/icons/skyLight.png',
+            backgroundImage: 'assets/images/skyLight.png',
           ),
           WeatherCard(
             city: 'London',
             temperature: 14,
             isDay: false,
             onTap: () => _onCardTap(context, 'London'),
-            backgroundImage: 'assets/icons/skyNight.png',
+            backgroundImage: 'assets/images/skyNight.png',
           ),
         ],
       ),
@@ -100,6 +107,10 @@ class _BookmarkPageState extends State<BookmarkPage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bookmark),

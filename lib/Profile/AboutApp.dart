@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_installasi_flutter/Profile/profilePage.dart';
 
 class Aboutapp extends StatelessWidget {
   @override
@@ -21,7 +22,10 @@ class AboutApp extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfilePage()),
+            );
           },
         ),
         title: Text('About Us'),
@@ -30,7 +34,7 @@ class AboutApp extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-                'assets/icons/loginBackground.png'), // Your background image path
+                'assets/images/loginBackground.png'), // Your background image path
             fit: BoxFit.cover,
           ),
         ),

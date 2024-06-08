@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_installasi_flutter/Bookmark/BookmarkPage.dart';
 import 'package:test_installasi_flutter/Login/loginpage.dart';
 import 'package:test_installasi_flutter/Profile/AboutApp.dart';
 import 'package:test_installasi_flutter/Profile/profileUpdatePage.dart';
@@ -12,11 +13,7 @@ class Profilepage extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => MainPage(),
-        '/login': (context) => LoginPage(),
-      },
+      home: MainPage(),
     );
   }
 }
@@ -27,7 +24,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int _selectedIndex = 2;
+  int _selectedIndex = 1;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -50,6 +47,10 @@ class _MainPageState extends State<MainPage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bookmark),
@@ -78,7 +79,8 @@ class ProfilePage extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => BookmarkPage()));
           },
         ),
       ),
@@ -95,8 +97,7 @@ class ProfilePage extends StatelessWidget {
               child: Row(
                 children: [
                   CircleAvatar(
-                    backgroundImage: AssetImage(
-                        'assets/icons/avatar.png'), // replace with your asset image
+                    backgroundImage: AssetImage('assets/icons/avatar.png'),
                     radius: 30,
                   ),
                   SizedBox(width: 16),
@@ -126,7 +127,7 @@ class ProfilePage extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.2),
                     spreadRadius: 2,
                     blurRadius: 5,
-                    offset: Offset(0, 3), // changes position of shadow
+                    offset: Offset(0, 3),
                   ),
                 ],
               ),
@@ -140,7 +141,7 @@ class ProfilePage extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ProfileInformationPage()));
+                              builder: (context) => ProfileUpdatePage()));
                     },
                   ),
                   ListTile(
@@ -191,7 +192,7 @@ class ProfilePage extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.2),
                     spreadRadius: 2,
                     blurRadius: 5,
-                    offset: Offset(0, 3), // changes position of shadow
+                    offset: Offset(0, 3),
                   ),
                 ],
               ),
@@ -238,10 +239,9 @@ class ProfilePage extends StatelessWidget {
 
   void _deleteAccount(BuildContext context) async {
     // Simulate account deletion process
-    await Future.delayed(
-        Duration(seconds: 2)); // Simulate a delay for account deletion process
+    await Future.delayed(Duration(seconds: 2));
 
-    print('Account deleted'); // Simulate account deletion logic here
+    print('Account deleted');
 
     // Navigate to the login page after deletion
     Navigator.of(context).pop();

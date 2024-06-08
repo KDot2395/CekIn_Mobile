@@ -53,19 +53,11 @@ class _AddWeatherPageState extends State<AddWeatherPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Want to\nknow more?',
+              'Create New Weather',
               style: TextStyle(
-                fontSize: 36.0,
+                fontSize: 50,
                 fontWeight: FontWeight.bold,
                 color: Colors.blue,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'please enter more weather',
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.black,
               ),
             ),
             SizedBox(height: 20),

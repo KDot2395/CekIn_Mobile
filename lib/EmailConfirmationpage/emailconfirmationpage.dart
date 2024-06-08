@@ -14,7 +14,7 @@ class EmailConfirmationPage extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/icons/loginBackground.png'),
+            image: AssetImage('assets/images/loginBackground.png'),
             fit: BoxFit.cover,
           ),
         ),
