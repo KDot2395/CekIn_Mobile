@@ -19,6 +19,14 @@ List<String> navTitle = [
 int selectedIndex = 0;
 
 class _HomepageState extends State<Homepage> {
+
+
+  void updateSelectedIndex(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -242,7 +250,7 @@ class _HomepageState extends State<Homepage> {
                       Positioned(
                         left: 15,
                         top: 510,
-                        child: _navBar(),
+                        child: _navBar(updateSelectedIndex),
                       ),
                     ],
                   ),
@@ -256,67 +264,65 @@ class _HomepageState extends State<Homepage> {
   }
 }
 
-Widget _navBar() {
-  return Container(
-    height: 65,
-    margin: const EdgeInsets.only(
-      right: 24,
-      left: 24,
-      bottom: 24,
-    ),
-    decoration: BoxDecoration(
-      color: Color(0xFFFAFAFA),
-      borderRadius: BorderRadius.circular(20),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withAlpha(20),
-          blurRadius: 20,
-          spreadRadius: 10,
-        )
-      ],
-    ),
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: navIcons.map((icon) {
-        int index = navIcons.indexOf(icon);
-        bool isSelected = selectedIndex == index;
-        return Material(
-          color: Colors.transparent,
-          child: GestureDetector(
-            onTap: () {},
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.only(
-                      top: 15,
-                      bottom: 0,
-                      left: 35,
-                      right: 35,
-                    ),
-                    child: Icon(
+Widget _navBar(Function(int) onTap) {
+  return Center(
+    child: Container(
+      alignment: Alignment.center,
+      height: 65,
+      width: 275,
+      margin: const EdgeInsets.only(
+        right: 24,
+        left: 24,
+        bottom: 24,
+      ),
+      decoration: BoxDecoration(
+        color: Color(0xFFFAFAFA),
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withAlpha(20),
+            blurRadius: 20,
+            spreadRadius: 10,
+          )
+        ],
+      ),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: navIcons.asMap().entries.map((entry) {
+            int index = entry.key;
+            IconData icon = entry.value;
+            bool isSelected = selectedIndex == index;
+            return GestureDetector(
+              onTap: () {
+                onTap(index); // Call the callback function
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
                       icon,
                       color: isSelected ? Colors.blue : Colors.grey,
                     ),
-                  ),
-                  Text(
-                    navTitle[index],
-                    style: TextStyle(
-                      color: isSelected ? Colors.blue : Colors.grey,
-                      fontSize: 12,
+                    SizedBox(height: 5),
+                    Text(
+                      navTitle[index],
+                      style: TextStyle(
+                        color: isSelected ? Colors.blue : Colors.grey,
+                        fontSize: 12,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ),
-        );
-      }).toList(),
+            );
+          }).toList(),
+        ),
+      ),
     ),
   );
 }
