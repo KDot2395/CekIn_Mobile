@@ -8,10 +8,16 @@ class Homepage extends StatefulWidget {
   State<Homepage> createState() => _HomepageState();
 }
 
-List<IconData> navIcons = [Icons.home, Icons.bookmark, Icons.person];
+List<IconData> navIcons = [
+  Icons.home,
+  Icons.search,
+  Icons.bookmark,
+  Icons.person
+];
 
 List<String> navTitle = [
   "Home",
+  "Search",
   "Bookmark",
   "Profile",
 ];
@@ -31,7 +37,7 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(color: Color(0xFF00CCFF)),
+        decoration: const BoxDecoration(color: Color(0xFF00CCFF)),
         child: Stack(
           children: [
             Positioned(
@@ -40,7 +46,7 @@ class _HomepageState extends State<Homepage> {
               child: Container(
                 width: 375,
                 height: 812,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment(0.00, -1.00),
                     end: Alignment(0, 1),
@@ -59,11 +65,11 @@ class _HomepageState extends State<Homepage> {
                           width: 300,
                           height: 230,
                           decoration: ShapeDecoration(
-                            color: Color(0xFFFAFAFA),
+                            color: const Color(0xFFFAFAFA),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
-                            shadows: [
+                            shadows: const [
                               BoxShadow(
                                 color: Colors.black45,
                                 blurRadius: 20,
@@ -74,7 +80,7 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                       ),
-                      Positioned(
+                      const Positioned(
                         left: 50,
                         top: 190,
                         child: Text(
@@ -88,7 +94,7 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                       ),
-                      Positioned(
+                      const Positioned(
                         left: 50,
                         top: 220,
                         child: Text(
@@ -102,7 +108,7 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                       ),
-                      Positioned(
+                      const Positioned(
                         left: 135,
                         top: 230,
                         child: Text(
@@ -116,7 +122,7 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                       ),
-                      Positioned(
+                      const Positioned(
                         left: 50,
                         top: 300,
                         child: Text(
@@ -130,7 +136,7 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                       ),
-                      Positioned(
+                      const Positioned(
                         left: 210,
                         top: 310,
                         child: Text(
@@ -144,7 +150,7 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                       ),
-                      Positioned(
+                      const Positioned(
                         left: 210,
                         top: 325,
                         child: Text(
@@ -159,41 +165,25 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ),
                       Positioned(
-                        left: 95,
+                        left: 113,
                         top: 355,
-                        child: Container(
-                          width: 163,
-                          height: 47,
-                          padding: const EdgeInsets.all(10),
-                          decoration: ShapeDecoration(
-                            color: Colors.purple,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.deepPurpleAccent,
                           ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                child: Text(
-                                  'VIEW STATS',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w700,
-                                    height: 0,
-                                  ),
-                                ),
-                              ),
-                            ],
+                          onPressed: () {},
+                          child: const Text(
+                            'VIEW STATS',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ),
-                      Positioned(
+                      const Positioned(
                         left: 100,
                         top: 420,
                         child: Text(
@@ -207,7 +197,7 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                       ),
-                      Positioned(
+                      const Positioned(
                         left: 100,
                         top: 445,
                         child: Text(
@@ -221,7 +211,7 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                       ),
-                      Positioned(
+                      const Positioned(
                         left: 100,
                         top: 470,
                         child: Text(
@@ -235,10 +225,10 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                       ),
-                      Positioned(
+                      const Positioned(
                         left: 180,
                         top: 180,
-                        child: Container(
+                        child: SizedBox(
                           height: 140,
                           width: 140,
                           child: Image(
@@ -251,6 +241,37 @@ class _HomepageState extends State<Homepage> {
                         left: 15,
                         top: 510,
                         child: _navBar(updateSelectedIndex),
+                      ),
+                      Positioned(
+                        left: 30,
+                        top: 80,
+                        child: Container(
+                          height: 40,
+                          width: 300,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withAlpha(20),
+                                  blurRadius: 20,
+                                  spreadRadius: 10,
+                                ),
+                              ],
+                            ),
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              child: Text(
+                                'Search',
+                                style: TextStyle(
+                                  color: Colors.black45,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -276,7 +297,7 @@ Widget _navBar(Function(int) onTap) {
         bottom: 24,
       ),
       decoration: BoxDecoration(
-        color: Color(0xFFFAFAFA),
+        color: const Color(0xFFFAFAFA),
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -300,7 +321,7 @@ Widget _navBar(Function(int) onTap) {
                 onTap(index); // Call the callback function
               },
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 15),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -308,7 +329,7 @@ Widget _navBar(Function(int) onTap) {
                       icon,
                       color: isSelected ? Colors.blue : Colors.grey,
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 3),
                     Text(
                       navTitle[index],
                       style: TextStyle(
