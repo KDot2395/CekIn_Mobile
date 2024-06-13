@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_installasi_flutter/Bookmark/BookmarkPage.dart';
+import 'package:test_installasi_flutter/SearchPage/SearchCityInfo.dart';
 import 'package:test_installasi_flutter/SignUppage.dart/Signuppage.dart';
 import 'package:test_installasi_flutter/forgotpassword/forgotpasswordpage.dart';
 
@@ -109,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Bookmarkpage()),
+                      MaterialPageRoute(builder: (context) => SearchCityInfo()),
                     );
                   },
                   child: Text(
