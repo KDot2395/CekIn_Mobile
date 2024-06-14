@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:test_installasi_flutter/Bookmark/BookmarkPage.dart';
 import 'package:test_installasi_flutter/Profile/profilePage.dart';
 import 'package:test_installasi_flutter/SearchCityPage/SearchCity.dart';
+import 'package:test_installasi_flutter/WeatherPage/weatherInfoPage.dart';
 
 import 'package:flutter/widgets.dart';
 
@@ -174,7 +175,14 @@ class _HomepageState extends State<Homepage> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.deepPurpleAccent,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      WeatherInfoPage(city: 'bogor')),
+                            );
+                          },
                           child: const Text(
                             'VIEW STATS',
                             style: TextStyle(
