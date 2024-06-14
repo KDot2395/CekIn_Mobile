@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:test_installasi_flutter/Profile/profilePage.dart';
+import 'package:test_installasi_flutter/dashboard/Profile/landingprofile.dart';
 
-class Aboutapp extends StatelessWidget {
+class Aboutuspage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'About Us Page',
-      home: AboutApp(),
+      home: aboutuspage(),
     );
   }
 }
 
-class AboutApp extends StatelessWidget {
+class aboutuspage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +23,7 @@ class AboutApp extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => ProfilePage()),
+              MaterialPageRoute(builder: (context) => Landingprofile()),
             );
           },
         ),

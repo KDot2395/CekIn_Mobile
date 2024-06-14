@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:test_installasi_flutter/Bookmark/BookmarkPage.dart';
 import 'package:test_installasi_flutter/HomePage/HomePage.dart';
-import 'package:test_installasi_flutter/Profile/profilePage.dart';
+import 'package:test_installasi_flutter/dashboard/Bookmark/BookmarkPage.dart';
+import 'package:test_installasi_flutter/dashboard/Profile/landingprofile.dart';
 
 class Searchcityinfo extends StatelessWidget {
   @override
@@ -44,7 +44,7 @@ class _SearchCityInfoState extends State<SearchCityInfo> {
       case 3:
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => ProfilePage()),
+          MaterialPageRoute(builder: (context) => Landingprofile()),
         );
         break;
     }

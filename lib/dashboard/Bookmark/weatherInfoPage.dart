@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_installasi_flutter/addWeather/editWeatherPage.dart';
+import 'package:test_installasi_flutter/dashboard/Bookmark/editWeatherPage.dart';
 
 class WeatherInfoPage extends StatelessWidget {
   final String city;

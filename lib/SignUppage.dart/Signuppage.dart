@@ -2,17 +2,68 @@ import 'package:flutter/material.dart';
 import 'package:test_installasi_flutter/EmailConfirmationpage/emailconfirmationpage.dart';
 import 'package:test_installasi_flutter/terms.dart/terms.dart'; // Import the TermsPage
 
+// user_model.dart
+class User {
+  String username;
+  String email;
+  String password;
+
+  User({required this.username, required this.email, required this.password});
+}
+
+// user_service.dart
+class UserService {
+  List<User> _users = [];
+
+  // Create
+  void addUser(User user) {
+    _users.add(user);
+  }
+
+  // Read
+  List<User> getUsers() {
+    return _users;
+  }
+
+  // Update
+  void updateUser(String username, User updatedUser) {
+    for (var user in _users) {
+      if (user.username == username) {
+        user.email = updatedUser.email;
+        user.password = updatedUser.password;
+      }
+    }
+  }
+
+  // Delete
+  void deleteUser(String username) {
+    _users.removeWhere((user) => user.username == username);
+  }
+}
+
 class SignUpPage extends StatefulWidget {
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final UserService _userService = UserService();
   TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   bool agreedToTerms = false;
+
+  // Add the createUser method
+  void createUser() {
+    final newUser = User(
+      username: usernameController.text,
+      email: emailController.text,
+      password: passwordController.text,
+    );
+
+    _userService.addUser(newUser);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -131,8 +182,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            TermsPage(), // Navigate to TermsPage
+                        builder: (context) => TermsPage(),
                       ),
                     );
                   },
@@ -156,6 +206,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     if (passwordController.text ==
                         confirmPasswordController.text) {
                       if (agreedToTerms) {
+                        createUser(); // Call createUser method
                         Navigator.push(
                           context,
                           MaterialPageRoute(

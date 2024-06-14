@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:test_installasi_flutter/HomePage/HomePage.dart';
-import 'package:test_installasi_flutter/Profile/profilePage.dart';
-import 'package:test_installasi_flutter/SearchPage/SearchCityInfo.dart';
-import 'package:test_installasi_flutter/addWeather/addWeatherPage.dart';
-import 'package:test_installasi_flutter/addWeather/weatherInfoPage.dart';
+// import 'package:test_installasi_flutter/HomePage/HomePage.dart';
+import 'package:test_installasi_flutter/dashboard/Bookmark/addWeatherPage.dart';
+import 'package:test_installasi_flutter/dashboard/Bookmark/weatherInfoPage.dart';
+// import 'package:test_installasi_flutter/dashboard/Profile/landingprofile.dart';
+// import 'package:test_installasi_flutter/dashboard/SearchPage/SearchCityInfo.dart';
 
 class Bookmarkpage extends StatelessWidget {
   @override
@@ -20,37 +20,37 @@ class BookmarkPage extends StatefulWidget {
 }
 
 class _BookmarkPageState extends State<BookmarkPage> {
-  int _selectedIndex = 1; // Initially set to 1 to highlight the Bookmark tab
+  int _currentIndex = 0; // Initially set to 1 to highlight the Bookmark tab
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+//   void _onItemTapped(int index) {
+//     setState(() {
+//       _selectedIndex = index;
+//     });
 
-    switch (index) {
-      case 0:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Homepage()),
-        );
-        break;
-      case 1:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => SearchCityInfo()),
-        );
-        break;
-      case 2:
-        // Current page, no action needed
-        break;
-      case 3:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => ProfilePage()),
-        );
-        break;
-    }
-  }
+//     switch (index) {
+//       case 0:
+//         Navigator.push(
+//           context,
+//           MaterialPageRoute(builder: (context) => Homepage()),
+//         );
+//         break;
+//       case 1:
+//         Navigator.push(
+//           context,
+//           MaterialPageRoute(builder: (context) => SearchCityInfo()),
+//         );
+//         break;
+//       case 2:
+//         // Current page, no action needed
+//         break;
+//       case 3:
+//         Navigator.push(
+//           context,
+//           MaterialPageRoute(builder: (context) => Landingprofile()),
+//         );
+//         break;
+//     }
+//   }
 
   void _onCardTap(BuildContext context, String city) {
     Navigator.push(
@@ -102,26 +102,30 @@ class _BookmarkPageState extends State<BookmarkPage> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark),
-            label: 'Bookmark',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
-        onTap: _onItemTapped,
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: [
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.home),
+      //       label: 'Home',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.search),
+      //       label: 'Search',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.bookmark),
+      //       label: 'Bookmark',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.person),
+      //       label: 'Profile',
+      //     ),
+      //   ],
+      //   currentIndex: _selectedIndex,
+      //   selectedItemColor: Colors.blue,
+      //   unselectedItemColor: Colors.grey,
+      //   onTap: _onItemTapped,
+      // ),
     );
   }
 }
