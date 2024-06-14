@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:test_installasi_flutter/dashboard/SearchPage/SearchCityInfo.dart';
+import 'package:test_installasi_flutter/dashboard/Search.dart';
+import 'package:test_installasi_flutter/dashboard/addWeather/addWeatherPage.dart';
+
+import 'package:test_installasi_flutter/dashboard/addWeather/weatherInfoPage.dart';
 import 'package:test_installasi_flutter/dashboard/dashboard.dart';
 import 'package:test_installasi_flutter/dashboard/profile/deleteaccount.dart';
-import '../../addWeather/addWeatherPage.dart';
-import '../../addWeather/weatherInfoPage.dart';
-
-class Bookmarkpage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: BookmarkPage(),
-    );
-  }
-}
 
 class BookmarkPage extends StatefulWidget {
   @override
@@ -20,7 +12,27 @@ class BookmarkPage extends StatefulWidget {
 }
 
 class _BookmarkPageState extends State<BookmarkPage> {
-  int _selectedIndex = 1; // Initially set to 1 to highlight the Bookmark tab
+  int _selectedIndex = 2; // Initially set to 2 to highlight the Bookmark tab
+  List<Map<String, dynamic>> _bookmarkedWeathers = [
+    {
+      'city': 'Bogor',
+      'temperature': 25,
+      'isDay': true,
+      'backgroundImage': 'assets/images/skyLight.png',
+    },
+    {
+      'city': 'Bandung',
+      'temperature': 23,
+      'isDay': true,
+      'backgroundImage': 'assets/images/skyLight.png',
+    },
+    {
+      'city': 'London',
+      'temperature': 14,
+      'isDay': false,
+      'backgroundImage': 'assets/images/skyNight.png',
+    },
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -37,7 +49,7 @@ class _BookmarkPageState extends State<BookmarkPage> {
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => SearchCityInfo()),
+          MaterialPageRoute(builder: (context) => SearchPage()),
         );
         break;
       case 2:
@@ -56,7 +68,35 @@ class _BookmarkPageState extends State<BookmarkPage> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => WeatherInfoPage(city: city)),
+    ).then((value) {
+      if (value != null && value == 'deleted') {
+        _removeWeather(city);
+      }
+    });
+  }
+
+  void _removeWeather(String city) {
+    setState(() {
+      _bookmarkedWeathers.removeWhere((weather) => weather['city'] == city);
+    });
+  }
+
+  Future<void> _addNewWeather(BuildContext context) async {
+    final newWeather = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => AddWeatherPage()),
     );
+
+    if (newWeather != null) {
+      setState(() {
+        _bookmarkedWeathers.add({
+          'city': newWeather['cityName'],
+          'temperature': 20, // Example temperature, you might want to fetch this dynamically
+          'isDay': true, // Example value, set accordingly
+          'backgroundImage': 'assets/images/skyLight.png', // Example value, set accordingly
+        });
+      });
+    }
   }
 
   @override
@@ -70,43 +110,30 @@ class _BookmarkPageState extends State<BookmarkPage> {
         actions: [
           IconButton(
             icon: Icon(Icons.add),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AddWeatherPage()));
-            },
+            onPressed: () => _addNewWeather(context),
           ),
         ],
       ),
       body: ListView(
-        children: [
-          WeatherCard(
-            city: 'Bogor',
-            temperature: 25,
-            isDay: true,
-            onTap: () => _onCardTap(context, 'Bogor'),
-            backgroundImage: 'assets/images/skyLight.png',
-          ),
-          WeatherCard(
-            city: 'Bandung',
-            temperature: 23,
-            isDay: true,
-            onTap: () => _onCardTap(context, 'Bandung'),
-            backgroundImage: 'assets/images/skyLight.png',
-          ),
-          WeatherCard(
-            city: 'London',
-            temperature: 14,
-            isDay: false,
-            onTap: () => _onCardTap(context, 'London'),
-            backgroundImage: 'assets/images/skyNight.png',
-          ),
-        ],
+        children: _bookmarkedWeathers.map((weather) {
+          return WeatherCard(
+            city: weather['city'],
+            temperature: weather['temperature'],
+            isDay: weather['isDay'],
+            onTap: () => _onCardTap(context, weather['city']),
+            backgroundImage: weather['backgroundImage'],
+          );
+        }).toList(),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bookmark),

@@ -1,40 +1,90 @@
 import 'package:flutter/material.dart';
+import 'package:test_installasi_flutter/dashboard/profile/bookmark/bookmark.dart';
 import 'Search.dart';
 import 'profile/landingprofile.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
+  @override
+  _DashboardScreenState createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFE0F7FA),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.lightBlue.shade100,
+              Colors.lightBlue.shade400,
+            ],
+          ),
+        ),
+        child: Column(
+          children: [
+            AppBar(
+              title: Text(
+                'Dashboard',
+                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              // actions: [
+              //   IconButton(
+              //     icon: Icon(Icons.add),
+              //     onPressed: () {
+              //       Navigator.push(context,
+              //           MaterialPageRoute(builder: (context) => AddWeatherPage()));
+              //     },
+              //   ),
+              // ],
+            ),
+            Expanded(child: _buildBody()),
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
-        items: const <BottomNavigationBarItem>[
+        backgroundColor: Colors.white,
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.dashboard, color: _currentIndex == 0 ? Colors.blue : Colors.transparent),
+            label: 'Dashboard',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: Icon(Icons.search, color: _currentIndex == 1 ? Colors.blue : Colors.transparent),
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.menu),
-            label: 'Other',
+            icon: Icon(Icons.bookmark, color: _currentIndex == 2 ? Colors.blue : Colors.transparent),
+            label: 'Bookmark',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.person, color: _currentIndex == 3 ? Colors.blue : Colors.transparent),
             label: 'Profile',
           ),
         ],
-        currentIndex: 0,
-        selectedItemColor: Colors.blue,
+        currentIndex: _currentIndex,
+        selectedItemColor: Color(0xFF00A8E8),
         onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
           switch (index) {
             case 1:
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => SearchPage()),
+              );
+              break;
+            case 2:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => BookmarkPage()), // Mengarahkan ke BookmarkPage
               );
               break;
             case 3:
@@ -43,14 +93,47 @@ class DashboardScreen extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => ProfilePage()),
               );
               break;
-            // Handle other taps
+            // Handle other taps if needed
           }
         },
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: WeatherCard(),
+    );
+  }
+
+  Widget _buildBody() {
+    switch (_currentIndex) {
+      case 0:
+        return _buildDashboard();
+      case 1:
+        return Container(); // Placeholder for SearchPage, implement as needed
+      case 2:
+        return Container(); // Placeholder, not used since we navigate to BookmarkPage directly
+      case 3:
+        return Container(); // Placeholder for ProfilePage, implement as needed
+      default:
+        return Container();
+    }
+  }
+
+  Widget _buildDashboard() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              '"Secure Steps Begin by Grasping Weather, Using the Cekin App!"',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 35,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 16),
+            WeatherCard(),
+          ],
         ),
       ),
     );
@@ -76,40 +159,47 @@ class WeatherCard extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(height: 20),
-          Icon(Icons.cloud, size: 100, color: Colors.blueAccent),
-          SizedBox(height: 20),
           Text(
-            'Los Angeles, CA, USA',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            'Bogor, West Java',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black), // Black text
+          ),
+          SizedBox(height: 10),
+          Text(
+            '25°C',
+            style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.black), // Black text
           ),
           Text(
-            '15°C',
-            style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+            'Sunday, 11 am',
+            style: TextStyle(color: Colors.grey),
           ),
+          SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Chip(
-                label: Text('Strong Winds'),
-                backgroundColor: Colors.redAccent,
+                label: Text('Scattered Clouds'),
+                backgroundColor: Color(0xFFe9a0b7), // Pink chip background
+                labelStyle: TextStyle(color: Colors.white), // White text
               ),
               SizedBox(width: 10),
               Chip(
-                label: Text('Cloudy'),
-                backgroundColor: Colors.blueAccent,
+                label: Text('Clouds'),
+                backgroundColor: Color(0xFFb4badc), // Light blue chip background
+                labelStyle: TextStyle(color: Colors.white), // White text
               ),
             ],
           ),
+          SizedBox(height: 10),
           ElevatedButton(
             onPressed: () {},
             child: Text('VIEW STATS'),
             style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white, backgroundColor: Colors.blueAccent,
+              foregroundColor: Colors.white,
+              backgroundColor: Color(0xFF5e4fc1), // Purple button background
               padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           Divider(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -118,23 +208,16 @@ class WeatherCard extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    Icon(Icons.thermostat, color: Colors.grey),
-                    Text('Pressure'),
-                    Text('1010 hPa'),
+                    Icon(Icons.water_drop, color: Color(0xFF00A8E8)), // Blue icon
+                    Text('Humidity', style: TextStyle(color: Color(0xFF00A8E8))), // Blue text
+                    Text('32%', style: TextStyle(color: Color(0xFF00A8E8))), // Blue text
                   ],
                 ),
                 Column(
                   children: [
-                    Icon(Icons.water_drop, color: Colors.grey),
-                    Text('Humidity'),
-                    Text('90%'),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Icon(Icons.air, color: Colors.grey),
-                    Text('Wind'),
-                    Text('19 km/h'),
+                    Icon(Icons.wind_power, color: Color(0xFF00A8E8)), // Blue icon
+                    Text('Wind', style: TextStyle(color: Color(0xFF00A8E8))), // Blue text
+                    Text('3.6 m/sec', style: TextStyle(color: Color(0xFF00A8E8))), // Blue text
                   ],
                 ),
               ],

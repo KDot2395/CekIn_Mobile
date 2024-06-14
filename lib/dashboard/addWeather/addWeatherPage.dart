@@ -14,11 +14,10 @@ class _AddWeatherPageState extends State<AddWeatherPage> {
     final cityName = _cityController.text;
 
     if (weatherName.isNotEmpty && cityName.isNotEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Weather added: $weatherName in $cityName'),
-        ),
-      );
+      Navigator.pop(context, {
+        'weatherName': weatherName,
+        'cityName': cityName,
+      });
 
       // Clear the text fields after adding
       _weatherController.clear();

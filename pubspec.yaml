@@ -68,6 +68,8 @@ flutter:
     - assets/icons/awan.kiri.atas.png
     - assets/icons/welcome.page.awan.png
     - assets/icons/CekIn.png
+    - assets/icons/skyLight.png
+    - assets/icons/skyNight.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
