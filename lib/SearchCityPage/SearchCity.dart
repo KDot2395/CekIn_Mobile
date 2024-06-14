@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
-import 'dart:ui';
+import 'package:test_installasi_flutter/HomePage/HomePage.dart';
 import 'package:test_installasi_flutter/Bookmark/BookmarkPage.dart';
 import 'package:test_installasi_flutter/Profile/profilePage.dart';
-import 'package:test_installasi_flutter/SearchCityPage/SearchCity.dart';
-
-import 'package:flutter/widgets.dart';
-
-class Homepage extends StatefulWidget {
-  @override
-  State<Homepage> createState() => _HomepageState();
-}
 
 List<IconData> navIcons = [
   Icons.home,
@@ -25,11 +17,14 @@ List<String> navTitle = [
   "Profile",
 ];
 
-int selectedIndex = 0;
+int selectedIndex = 1;
 
-class _HomepageState extends State<Homepage> {
+class Searchcity extends StatefulWidget {
+  @override
+  State<Searchcity> createState() => _SearchcityState();
+}
 
-
+class _SearchcityState extends State<Searchcity> {
   void updateSelectedIndex(int index) {
     setState(() {
       selectedIndex = index;
@@ -245,7 +240,7 @@ class _HomepageState extends State<Homepage> {
                         top: 510,
                         child: _navBar(context, updateSelectedIndex),
                       ),
-                      /*Positioned(
+                      Positioned(
                         left: 30,
                         top: 80,
                         child: Container(
@@ -275,7 +270,7 @@ class _HomepageState extends State<Homepage> {
                             ),
                           ),
                         ),
-                      ),*/
+                      ),
                     ],
                   ),
                 ),
@@ -322,17 +317,17 @@ Widget _navBar(BuildContext context, Function(int) onTap) {
             return GestureDetector(
               onTap: () {
                 onTap(index);
-                if (index == 1) {
+                if (index == 0) {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Searchcity()));
+                      MaterialPageRoute(builder: (context) => Homepage()));
                 } // Call the callback function
                 else if (index == 2) {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => BookmarkPage()));
-                } else if (index == 2) {
+                } else if (index == 3) {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ProfilePage()));
-                }
+                } // Call the callback function
               },
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 12),
