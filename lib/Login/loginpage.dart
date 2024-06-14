@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:test_installasi_flutter/SignUppage.dart/Signuppage.dart';
-import 'package:test_installasi_flutter/forgotpassword/forgotpasswordpage.dart';
-
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_installasi_flutter/dashboard/dashboard.dart';
+import '../SignUppage.dart/Signuppage.dart';
+import '../forgotpassword/forgotpasswordpage.dart';
+  
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -10,6 +11,18 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool rememberMe = false;
+
+  // Fungsi untuk menangani login
+  void _login() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', true);
+    
+    // Navigasi ke halaman dashboard setelah login
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => DashboardScreen()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +82,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 TextButton(
                   onPressed: () {
-                    
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
@@ -82,9 +94,7 @@ class _LoginPageState extends State<LoginPage> {
             Spacer(),
             Center(
               child: ElevatedButton(
-                onPressed: () {
-                  
-                },
+                onPressed: _login, // Panggil fungsi _login saat tombol ditekan
                 child: Text(
                   'Login',
                   style: TextStyle(
@@ -107,7 +117,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 TextButton(
                   onPressed: () {
-                    
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => SignUpPage()),

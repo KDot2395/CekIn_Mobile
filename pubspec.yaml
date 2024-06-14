@@ -37,7 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.6
   get: ^4.6.6
   hexcolor: ^3.0.1
-  
+  shared_preferences: ^2.0.7
+  http: ^1.2.1
 
 dev_dependencies:
   flutter_test:
@@ -66,7 +67,7 @@ flutter:
     - assets/icons/iconLanding.png
     - assets/icons/awan.kiri.atas.png
     - assets/icons/welcome.page.awan.png
-
+    - assets/icons/CekIn.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
